@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using os_query_api.BusinessLogic;
 
 namespace os_query_api.ApiController
 {
@@ -11,7 +12,16 @@ namespace os_query_api.ApiController
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok("Operation System Information API");
+            var _logic = new OperationSystemInformationLogic();
+            return Ok(_logic.Ping());
+        }
+        
+        [Route("version")]
+        [HttpGet]
+        public IActionResult GetOsVersion()
+        {
+            var _logic = new OperationSystemInformationLogic();
+            return Ok(_logic.GetOsVersion());
         }
     }
 }
