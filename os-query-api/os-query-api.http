@@ -1,6 +1,16 @@
 @os_query_api_HostAddress = http://localhost:5106
 
-GET {{os_query_api_HostAddress}}/weatherforecast/
+GET {{os_query_api_HostAddress}}/api/os/v1/operating-system-information/version
+Accept: application/json
+
+###
+
+GET {{os_query_api_HostAddress}}/api/os/v1/operating-system-information/ping
+Accept: application/json
+
+###
+
+GET {{os_query_api_HostAddress}}/api/os/v1/shell/run/whoami
 Accept: application/json
 
 ###

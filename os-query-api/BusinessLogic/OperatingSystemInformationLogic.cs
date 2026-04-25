@@ -1,6 +1,6 @@
 ﻿namespace os_query_api.BusinessLogic;
 
-public class OperationSystemInformationLogic
+public class OperatingSystemInformationLogic : IOperatingSystemInformationLogic
 {
     public string Ping()
     {
@@ -9,6 +9,6 @@ public class OperationSystemInformationLogic
 
     public string GetOsVersion()
     {
-        return "1.0.0";
+        return Environment.OSVersion.VersionString;
     }
 }
