@@ -6,15 +6,23 @@ public class Shell : IShell
 {
     public string Run(string command)
     {
-        var process = Process.Start(command);
+        var psi = new ProcessStartInfo(command)
+        {
+            UseShellExecute = false,
+            RedirectStandardOutput = true,
+            CreateNoWindow = true
+        };
+        
         try
         {
+            var process = Process.Start(psi);
+            var outputStd = process.StandardOutput.ReadToEnd();
             process.WaitForExit();
-            return process.StandardOutput.ReadToEnd();
+            return outputStd;
         }
         catch (Exception ex)
         {
-            return ex.Message;
+            return ex.ToString();
         }
     }
 }
