@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using os_query_api.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,14 +11,21 @@ builder.Services.AddOpenApi();
 builder.Services.AddScoped<os_query_api.BusinessLogic.IOperatingSystemInformationLogic, os_query_api.BusinessLogic.OperatingSystemInformationLogic>();
 builder.Services.AddScoped<os_query_api.BusinessLogic.IShell, os_query_api.BusinessLogic.Shell>();
 
+builder.Configuration
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true);
+
+KeycloakOptions keycloakOptions = new();
+builder.Configuration.GetSection("Keycloak").Bind(keycloakOptions);
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
-        options.Authority = "http://10.42.1.189:8080/realms/os-query-api";
-        options.Audience = "apiclient";
-        options.RequireHttpsMetadata = false;
+        options.Authority = keycloakOptions.Url;
+        options.Audience = keycloakOptions.Audience;
+        options.RequireHttpsMetadata = keycloakOptions.RequireHttpsMetadata;
         options.MapInboundClaims = false;
-        options.TokenValidationParameters.RoleClaimType = "roles";
+        options.TokenValidationParameters.RoleClaimType = keycloakOptions.RoleClaimType;
     });
 
 builder.Services.AddAuthorization();
