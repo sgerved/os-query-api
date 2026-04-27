@@ -2,5 +2,5 @@
 
 public interface IShell
 {
-    string Run(string command);
+    Task<string> Run(string argument);
 }

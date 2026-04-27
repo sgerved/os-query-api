@@ -15,7 +15,8 @@ namespace os_query_api.ApiController
         {
             return Ok(logic.Ping());
         }
-
+        
+        [Authorize]
         [Route("version")]
         [HttpGet]
         public IActionResult GetOsVersion()

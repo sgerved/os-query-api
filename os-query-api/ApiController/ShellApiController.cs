@@ -11,9 +11,9 @@ namespace os_query_api.ApiController
         [Authorize(Roles = "admin")]
         [Route("run/{command}")]
         [HttpGet]
-        public IActionResult Run(string command)
+        public async Task<IActionResult> Run(string command)
         {
-            return Ok(shell.Run(command));
+            return Ok(await shell.Run(command));
         }
     }
 }
