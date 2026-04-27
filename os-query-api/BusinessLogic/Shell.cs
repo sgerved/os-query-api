@@ -5,13 +5,13 @@ namespace os_query_api.BusinessLogic;
 public class Shell : IShell
 {
     private const int Timeout = 5000;
-    private static readonly List<string> allowedCommands = new List<string> { "ls", "pwd", "echo", "whoami" };
+    private static readonly HashSet<string> AllowedCommands = ["ls", "pwd", "echo", "whoami"];
 
     public async Task<string> Run(string argument)
     {
         try
         {
-            if (string.IsNullOrWhiteSpace(argument) || !allowedCommands.Contains(argument))
+            if (string.IsNullOrWhiteSpace(argument) || !AllowedCommands.Contains(argument))
             {
                 return $"Invalid command: {argument}";
             }
@@ -21,12 +21,12 @@ public class Shell : IShell
             var os = Environment.OSVersion.Platform;
             if (os == PlatformID.Win32NT)
             {
-                command = $"cmd";
+                command = "cmd";
                 argument = $"/c {argument}";
             }
             else
             {
-                command = $"bash";
+                command = "bash";
                 argument = $"-c {argument}";
             }
 

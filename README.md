@@ -96,7 +96,7 @@ docker run -p 8080:8080 os-query-api
 
 | Method | Route | Auth required | Role required |
 |--------|-------|:---:|:---:|
-| GET | `/api/os/v1/operating-system-information/version` | No | - |
+| GET | `/api/os/v1/operating-system-information/version` | Yes | - |
 | GET | `/api/os/v1/operating-system-information/ping` | Yes | - |
 | GET | `/api/os/v1/shell/run/{command}` | Yes | `admin` |
 
