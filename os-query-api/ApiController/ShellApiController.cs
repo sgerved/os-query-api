@@ -8,7 +8,7 @@ namespace os_query_api.ApiController
 {
     [Route("api/os/v1/shell")]
     [ApiController]
-    public class ShellApiController(IShell shell, ApiEventRepository eventRepository) : ControllerBase
+    public class ShellApiController(IShell shell, IApiEventRepository eventRepository) : ControllerBase
     {
         [Authorize(Roles = "admin")]
         [Route("run/{command}")]
