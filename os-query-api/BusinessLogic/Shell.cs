@@ -14,8 +14,7 @@ public class Shell : IShell
         {
             // Only allow commands defined in the AllowedCommands and without arguments.
             if (string.IsNullOrWhiteSpace(commandModel.Command) || 
-                !AllowedCommands.Contains(commandModel.Command) || 
-                commandModel.Command.ToArray().Length > 1)
+                !AllowedCommands.Contains(commandModel.Command))
             {
                 return $"Invalid command: {commandModel.Command}";
             }
