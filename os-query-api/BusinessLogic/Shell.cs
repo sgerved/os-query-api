@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using os_query_api.BusinessLogic.Models;
 
 namespace os_query_api.BusinessLogic;
 
@@ -7,36 +8,40 @@ public class Shell : IShell
     private const int Timeout = 5000;
     private static readonly HashSet<string> AllowedCommands = ["ls", "pwd", "echo", "whoami"];
 
-    public async Task<string> Run(string argument)
+    public async Task<string> Run(ExecuteCommandShellModel commandModel)
     {
         try
         {
-            if (string.IsNullOrWhiteSpace(argument) || !AllowedCommands.Contains(argument))
+            // Only allow commands defined in the AllowedCommands and without arguments.
+            if (string.IsNullOrWhiteSpace(commandModel.Command) || 
+                !AllowedCommands.Contains(commandModel.Command) || 
+                commandModel.Command.ToArray().Length > 1)
             {
-                return $"Invalid command: {argument}";
+                return $"Invalid command: {commandModel.Command}";
             }
 
-            string command;
+            string shell;
+            string arguments;
             // Detect current OS to determine the shell to use
             var os = Environment.OSVersion.Platform;
             if (os == PlatformID.Win32NT)
             {
-                command = "cmd";
-                argument = $"/c {argument}";
+                shell = "cmd";
+                arguments = $"/c {commandModel.Command}";
             }
             else
             {
-                command = "bash";
-                argument = $"-c {argument}";
+                shell = "bash";
+                arguments = $"-c {commandModel.Command}";
             }
 
-            var psi = new ProcessStartInfo(command)
+            var psi = new ProcessStartInfo(shell)
             {
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
                 CreateNoWindow = true,
-                ArgumentList = { argument }
+                ArgumentList = { arguments }
             };
 
             using var process = Process.Start(psi);
