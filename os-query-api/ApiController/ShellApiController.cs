@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using os_query_api.ApiController.Models;
@@ -17,7 +18,7 @@ namespace os_query_api.ApiController
         [HttpPost]
         public async Task<IActionResult> Run(ExecuteCommandShellDto dto)
         {
-            var eventModel = new ApiEventModel {EventName = "ShellCommand", EventData = dto.Command, EventTime = DateTime.UtcNow};
+            var eventModel = new ApiEventModel {EventName = "ShellCommand", EventData = $"Command to  run: {dto.Command}, by user: {User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name)}", EventTime = DateTime.UtcNow};
             await eventRepository.LogAsync(eventModel);
             return Ok(await shell.Run(new ExecuteCommandShellModel { Command = dto.Command }));
         }
