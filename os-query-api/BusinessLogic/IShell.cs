@@ -1,6 +1,8 @@
-﻿namespace os_query_api.BusinessLogic;
+﻿using os_query_api.BusinessLogic.Models;
+
+namespace os_query_api.BusinessLogic;
 
 public interface IShell
 {
-    Task<string> Run(string argument);
+    Task<string> Run(ExecuteCommandShellModel commandModel);
 }

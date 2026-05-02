@@ -1,19 +1,26 @@
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using os_query_api.ApiController.Models;
 using os_query_api.BusinessLogic;
+using os_query_api.BusinessLogic.Models;
+using os_query_api.DataAccess;
+using os_query_api.DataAccess.Models;
 
 namespace os_query_api.ApiController
 {
     [Route("api/os/v1/shell")]
     [ApiController]
-    public class ShellApiController(IShell shell) : ControllerBase
+    public class ShellApiController(IShell shell, IApiEventRepository eventRepository) : ControllerBase
     {
         [Authorize(Roles = "admin")]
-        [Route("run/{command}")]
-        [HttpGet]
-        public async Task<IActionResult> Run(string command)
+        [Route("run")]
+        [HttpPost]
+        public async Task<IActionResult> Run(ExecuteCommandShellDto dto)
         {
-            return Ok(await shell.Run(command));
+            var eventModel = new ApiEventModel {EventName = "ShellCommand", EventData = $"Command to  run: {dto.Command}, by user: {User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name)}", EventTime = DateTime.UtcNow};
+            await eventRepository.LogAsync(eventModel);
+            return Ok(await shell.Run(new ExecuteCommandShellModel { Command = dto.Command }));
         }
     }
 }
