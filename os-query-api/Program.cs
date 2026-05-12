@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using os_query_api.BusinessLogic;
 using os_query_api.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,7 @@ builder.Services.AddScoped<os_query_api.BusinessLogic.IOperatingSystemInformatio
 builder.Services.AddScoped<os_query_api.BusinessLogic.IShell, os_query_api.BusinessLogic.Shell>();
 builder.Services.AddDbContext<os_query_api.DataAccess.ApiEventsDbContext>();
 builder.Services.AddScoped<os_query_api.DataAccess.IApiEventRepository, os_query_api.DataAccess.ApiEventRepository>();
+builder.Services.AddSingleton<ITokenCacheSingleton, TokenCacheSingleton>();
 
 builder.Configuration
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)

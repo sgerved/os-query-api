@@ -14,3 +14,8 @@ GET {{os_query_api_HostAddress}}/api/os/v1/shell/run/whoami
 Accept: application/json
 
 ###
+
+GET {{os_query_api_HostAddress}}/api/os/v1/test-endpoint
+Accept: application/json
+
+###
