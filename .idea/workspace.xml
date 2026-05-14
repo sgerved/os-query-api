@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="ee9199ea-6863-40fe-99cd-06602299a7b3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/os-query-api/ApiController/OperationSystemInformationApiController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/os-query-api/ApiController/OperationSystemInformationApiController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/os-query-api/ApiController/ShellApiController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/os-query-api/ApiController/ShellApiController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os-query-api/BusinessLogic/TokenCacheSingleton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/os-query-api/BusinessLogic/TokenCacheSingleton.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/os-query-api/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/os-query-api/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/os-query-api/os-query-api.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/os-query-api/os-query-api.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/os-query-api/os-query-api.http" beforeDir="false" afterPath="$PROJECT_DIR$/os-query-api/os-query-api.http" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,7 +15,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
+    <option name="cachedIndexableFilesCount" value="1082" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -23,10 +24,10 @@
     <commands />
     <urls />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5,
-  "fromUser": false
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5,
+  &quot;fromUser&quot;: false
+}</component>
   <component name="ProjectId" id="3CqorQO6ZDT1AczIQmcB1d5L36r" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -40,8 +41,14 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "refactor-claude",
+    "git-widget-placeholder": "test-singleton",
     "ignore.virus.scanning.warn.message": "true",
+    "javascript.preferred.runtime.type.id": "node",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -60,6 +67,7 @@
       <option name="presentableId" value="Default" />
       <updated>1777122658960</updated>
       <workItem from="1777122663233" duration="183000" />
+      <workItem from="1778736574803" duration="492000" />
     </task>
     <servers />
   </component>

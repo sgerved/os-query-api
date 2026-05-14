@@ -10,11 +10,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
-builder.Services.AddScoped<os_query_api.BusinessLogic.IOperatingSystemInformationLogic, os_query_api.BusinessLogic.OperatingSystemInformationLogic>();
-builder.Services.AddScoped<os_query_api.BusinessLogic.IShell, os_query_api.BusinessLogic.Shell>();
+builder.Services.AddScoped<IOperatingSystemInformationLogic, OperatingSystemInformationLogic>();
+builder.Services.AddScoped<IShell, Shell>();
 builder.Services.AddDbContext<os_query_api.DataAccess.ApiEventsDbContext>();
 builder.Services.AddScoped<os_query_api.DataAccess.IApiEventRepository, os_query_api.DataAccess.ApiEventRepository>();
 builder.Services.AddSingleton<ITokenCacheSingleton, TokenCacheSingleton>();
+builder.Services.AddHttpClient();
 
 builder.Configuration
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
